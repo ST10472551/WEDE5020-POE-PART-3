@@ -46,6 +46,11 @@ Updated the Contact us webpage with the addition on an html form and a location 
 
 Site Map
 <img width="1536" height="1024" alt="Site map wede" src="https://github.com/user-attachments/assets/598c7199-9cc5-4d05-9172-51e282dd1ca3" />
+<img width="1885" height="913" alt="Screenshot 2025-11-03 204822" src="https://github.com/user-attachments/assets/4aa68764-0903-4d41-988c-e4fccbcde09f" />
+<img width="1889" height="903" alt="Screenshot 2025-11-03 204858" src="https://github.com/user-attachments/assets/f5763d28-180a-4537-81bf-c8612525865c" />
+<img width="1882" height="915" alt="Screenshot 2025-11-03 203936" src="https://github.com/user-attachments/assets/3dcac926-c716-4a7d-ba8c-d22002a0f04d" />
+
+
 
 
 
