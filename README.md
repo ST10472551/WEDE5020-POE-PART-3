@@ -44,3 +44,8 @@ Added enquiry webpage
 Added the enquiry form
 Updated the Contact us webpage with the addition on an html form and a location displayed using google maps
 
+Site Map
+<img width="1536" height="1024" alt="Site map wede" src="https://github.com/user-attachments/assets/598c7199-9cc5-4d05-9172-51e282dd1ca3" />
+
+
+
