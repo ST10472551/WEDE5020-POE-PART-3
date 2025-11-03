@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02Threads - Enquiry</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">02Threads</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="product_services.html">Product Services</a>
+      <a href="cart.html">Cart</a>
+      <a href="contact_us.html">Contact</a>
+      <a href="about.html">About</a>
+      <a href="enquiry.html">Enquiry</a>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <h2>Make an Enquiry</h2>
+    <form id="enquiry-form" action="#" method="post" novalidate>
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required minlength="2" maxlength="50"
+               pattern="[A-Za-z\s]+" placeholder="Your name">
+        <div class="error-message" id="name-error"></div>
+      </div>
+
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required placeholder="example@gmail.com">
+        <div class="error-message" id="email-error"></div>
+      </div>
+
+      <div>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required 
+               pattern="^\+?\d{8,15}$" maxlength="15" placeholder="+27 68 456 7890">
+        <div class="error-message" id="phone-error"></div>
+      </div>
+
+      <div>
+        <label for="enquiry-type">Type of Enquiry:</label>
+        <select id="enquiry-type" name="enquiry-type" required>
+          <option value="">-- Select --</option>
+          <option value="service">Service</option>
+          <option value="product">Product</option>
+          <option value="volunteer">Volunteer</option>
+          <option value="sponsor">Sponsor</option>
+        </select>
+        <div class="error-message" id="type-error"></div>
+      </div>
+
+      <div>
+        <label for="details">Details / Message:</label>
+        <textarea id="details" name="details" required minlength="10" maxlength="500"
+                  placeholder="Write your enquiry here..."></textarea>
+        <div class="error-message" id="details-error"></div>
+      </div>
+
+      <button type="submit">Submit Enquiry</button>
+      <div class="success-message" id="success-message"></div>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 02Threads
+  </footer>
+
+  <script>
+    const form = document.getElementById('enquiry-form');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const typeInput = document.getElementById('enquiry-type');
+    const detailsInput = document.getElementById('details');
+
+    const nameError = document.getElementById('name-error');
+    const emailError = document.getElementById('email-error');
+    const phoneError = document.getElementById('phone-error');
+    const typeError = document.getElementById('type-error');
+    const detailsError = document.getElementById('details-error');
+    const successMessage = document.getElementById('success-message');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let valid = true;
+
+      // Name validation
+      if (!nameInput.value.trim()) {
+        nameError.textContent = "Name is required.";
+        valid = false;
+      } else if (nameInput.value.length < 2 || nameInput.value.length > 50) {
+        nameError.textContent = "Name must be 2-50 characters long.";
+        valid = false;
+      } else if (!/^[A-Za-z\s]+$/.test(nameInput.value.trim())) {
+        nameError.textContent = "Name can only contain letters and spaces.";
+        valid = false;
+      } else {
+        nameError.textContent = "";
+      }
+
+      // Email validation
+      if (!emailInput.value.trim()) {
+        emailError.textContent = "Email is required.";
+        valid = false;
+      } else if (!/\S+@\S+\.\S+/.test(emailInput.value)) {
+        emailError.textContent = "Enter a valid email address.";
+        valid = false;
+      } else {
+        emailError.textContent = "";
+      }
+
+      // Phone validation
+      if (!phoneInput.value.trim()) {
+        phoneError.textContent = "Phone number is required.";
+        valid = false;
+      } else if (!/^\+?\d{8,15}$/.test(phoneInput.value.trim())) {
+        phoneError.textContent = "Enter a valid phone number (8-15 digits, may start with +).";
+        valid = false;
+      } else {
+        phoneError.textContent = "";
+      }
+
+      // Enquiry type validation
+      if (!typeInput.value) {
+        typeError.textContent = "Select an enquiry type.";
+        valid = false;
+      } else {
+        typeError.textContent = "";
+      }
+
+      // Details validation
+      if (!detailsInput.value.trim()) {
+        detailsError.textContent = "Message is required.";
+        valid = false;
+      } else if (detailsInput.value.length < 10 || detailsInput.value.length > 500) {
+        detailsError.textContent = "Message must be 10-500 characters.";
+        valid = false;
+      } else {
+        detailsError.textContent = "";
+      }
+
+      if (valid) {
+        // Present the user with a custom response
+        let reply = "";
+        switch(typeInput.value) {
+          case "service":
+            reply = "Thank you for your interest in our services. We will send detailed information about cost and availability soon!";
+            break;
+          case "product":
+            reply = "Thank you for your product enquiry. We'll check availability and pricing and get back to you!";
+            break;
+          case "volunteer":
+            reply = "Thank you for your interest in volunteering! We'll send you our volunteer opportunities and requirements.";
+            break;
+          case "sponsor":
+            reply = "Thank you for your sponsorship enquiry! We'll contact you to discuss sponsorship possibilities.";
+            break;
+          default:
+            reply = "Thank you for your enquiry!";
+        }
+        successMessage.textContent = reply;
+
+        // Optionally clear the form (except the response)
+        form.reset();
+        // Scroll to the success message
+        successMessage.scrollIntoView({behavior: "smooth"});
+      } else {
+        successMessage.textContent = "";
+      }
+    });
+  </script>
+</body>
+</html>

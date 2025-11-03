@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+    <title>O2Threads - Online Shopping Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<header>
+  <div class="logo">02Threads.</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="product_services.html">Product Services</a>
+    <a href="Cart.html">Cart</a>
+    <a href="contact_us.html">Contact</a>
+    <a href="about.html">About</a>
+    <a href="enquiry.html">Enquiry</a>
+  </nav>
+</header>
+
+<div class="container">
+  <h1>Welcome to 02Threads!</h1>
+  <p>Browse our latest products and enjoy great and affordable deals every day.</p>
+
+  <div class="products">
+    <div class="product">
+      <img src="https://grenson.sirv.com/s-nomnt8gvvb/images/stencil/original/products/1686/3132/sneaker51_113644_threequarter_print__18581.1643629398.jpg" alt="Shoes" width="200" class="gallery-img" data-caption="Stylish Sneakers: Comfortable and practical sneakers.">
+      <h3>Stylish Sneakers</h3>
+      <p style="color: #000000;">Comfortable and practical sneakers.</p>
+      <div class="price">R1949.99</div>
+      <button onclick="addToCart('Stylish Sneakers', 1949.99)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="_images/Jacket.webp" alt="Jacket" width="200" class="gallery-img" data-caption="Jacket: High-quality and durable.">
+      <h3>Jacket</h3>
+      <p style="color: #000000;">High-quality and durable.</p>
+      <div class="price">R5300.99</div>
+      <button onclick="addToCart('Jacket', 5300.99)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="_images/Jeans.jpg" alt="Womens Jeans" width="200" class="gallery-img" data-caption="Womens Jeans: Good fitting jeans for everyday use">
+      <h3>Womens Jeans</h3>
+      <p style="color: #000000;">Good fitting jeans for everyday use</p>
+      <div class="price">R4000.00</div>
+      <button onclick="addToCart('Womens Jeans', 4000)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="_images/Bag.jpg" alt="Bag" width="200" class="gallery-img" data-caption="Leather Backpack: Durable and stylish backpack for everyday use.">
+      <h3>Leather Backpack</h3>
+      <p style="color: #000000;">Durable and stylish backpack for everyday use.</p>
+      <div class="price">R2000.00</div>
+      <button onclick="addToCart('Leather Backpack', 2000.00)">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox Markup -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightbox-close" title="Close">&times;</button>
+    <img src="" alt="" id="lightbox-img">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
+
+<script>
+function addToCart(name, price) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name: name, price: price });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(name + " added to cart!");
+}
+
+// Lightbox Functionality
+document.addEventListener("DOMContentLoaded", function() {
+  const galleryImgs = document.querySelectorAll('.gallery-img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const closeBtn = document.getElementById('lightbox-close');
+
+  galleryImgs.forEach(img => {
+    img.addEventListener('click', function() {
+      lightbox.classList.add('active');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightboxCaption.textContent = img.getAttribute('data-caption') || img.alt;
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    lightboxImg.src = "";
+    lightboxCaption.textContent = "";
+    document.body.style.overflow = "";
+  }
+
+  closeBtn.addEventListener('click', closeLightbox);
+
+  // Also close when clicking outside the lightbox-content
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  // Optional: ESC key closes lightbox
+  document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape" && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+});
+</script>
+<footer>
+    &copy; 2025 02Threads.
+</footer>
+</body>
+</html>

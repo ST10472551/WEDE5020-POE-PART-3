@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02Threads - Contact</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+  <header>
+    <div class="logo">02Threads</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="product_services.html">Product Services</a>
+      <a href="cart.html">Cart</a>
+      <a href="contact_us.html">Contact</a>
+      <a href="about.html">About</a>
+      <a href="enquiry.html">Enquiry</a>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <h2>Contact us</h2>
+    <h3>General inquiries</h3>
+    <p>
+      Email: <a href="mailto:02Threads@gmail.com" style="color:#000000; text-decoration:underline;">02Threads@gmail.com</a><br>
+      Phone: +27 68 456 7890
+    </p>
+    <h3>Postal Address</h3>
+    <p>
+      27 Fritz Krampe Rd, Johannesburg, South Africa
+    </p>
+  </div>
+
+  <h2 style="text-align:center;">Our Map Location</h2>
+  <div id="map"></div>
+
+  <form id="contact-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone number">Phone number:</label>
+      <input type="phone number" id="phone number" name="phone number" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button type="submit">Send</button>
+  </form>
+
+  <footer>
+    &copy; 2025 02Threads
+  </footer>
+
+  <!-- Google Maps API (Make sure your API key is valid and limited for security) -->
+  <script>
+    function initMap() {
+      const myLocation = { lat: -26.15568, lng: 27.68295 };
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 10,
+        center: myLocation
+      });
+      const marker = new google.maps.Marker({
+        position: myLocation,
+        map: map,
+        title: "We are here!"
+      });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPUDDEWhr4EfEGGq4EyflVNCcjbyCcYOs&callback=initMap"></script>
+</body>
+</html>
